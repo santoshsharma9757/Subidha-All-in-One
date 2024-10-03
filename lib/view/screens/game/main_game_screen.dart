@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:hamro_smart_life/constant/app_constant.dart';
 import 'package:hamro_smart_life/constant/app_screen_utils.dart';
 import 'package:hamro_smart_life/constant/app_text_style.dart';
 import 'package:hamro_smart_life/utils/app_utils.dart';
+import 'package:hamro_smart_life/utils/widgets/reusable_appbar.dart';
 import 'package:hamro_smart_life/utils/widgets/reusable_container_widget.dart';
 
 class GameMainScreen extends StatefulWidget {
@@ -42,10 +42,7 @@ class _GameMainScreenState extends State<GameMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.primary,
-          title: const Text('Game'),
-        ),
+       appBar: const ReusableAppBar(title: "Game"),
         body: ListView.builder(
             itemCount: gameTitle.length,
             itemBuilder: (context, index) {

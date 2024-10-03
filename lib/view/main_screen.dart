@@ -45,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const ReusableAppBar(
-          title: "Hamro Smart Life",
+          title: "Subidha-All in One",
           centerTitle: true,
         ),
         body: SingleChildScrollView(

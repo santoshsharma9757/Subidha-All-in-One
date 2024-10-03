@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hamro_smart_life/constant/app_constant.dart';
 import 'package:hamro_smart_life/constant/app_string.dart';
 import 'package:hamro_smart_life/constant/app_text_style.dart';
+import 'package:hamro_smart_life/utils/widgets/reusable_appbar.dart';
 import 'package:hamro_smart_life/utils/widgets/reusable_textformfield.dart';
 import 'package:hamro_smart_life/view_model/simple_interest_notifier.dart';
 import 'package:provider/provider.dart';
@@ -33,9 +34,7 @@ class _SimpleInterestScreenState extends State<SimpleInterestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(SIString.sadharanByaj),
-      ),
+      appBar: const ReusableAppBar(title: SIString.sadharanByaj),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
