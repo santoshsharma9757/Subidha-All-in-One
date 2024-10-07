@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.appinventwithbibek.subidha_all_in_one">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Subidha-All in One"
         android:name="${applicationName}"
