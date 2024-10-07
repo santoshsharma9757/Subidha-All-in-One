@@ -13,7 +13,7 @@ class MainScreenNotifier extends ChangeNotifier {
     "games",
     "notes",
     "calendar",
-    // "additional",
+    "additional",
   ];
 
   List imageList = [
@@ -23,9 +23,10 @@ class MainScreenNotifier extends ChangeNotifier {
   CarouselSliderController controller = CarouselSliderController();
   int currentIndex = 0;
 
-  List additionalServices = ["calendar", "news", "currency"];
+  List additionalServices = ["table","calendar","news","currency"];
 
   List iconsServices = [
+    Icons.numbers,
     Icons.calendar_month,
     Icons.newspaper,
     Icons.currency_bitcoin
@@ -54,7 +55,7 @@ class MainScreenNotifier extends ChangeNotifier {
     setIsLoading(true);
     try {
       final response = await _mainScreenRepo.getCarouselBanner(context);
-      print("Response $response");
+      print("Response crouasle $response");
       setIsLoading(false);
       if (response != null) {
         setCarouselBanner(response['data']);

@@ -39,6 +39,13 @@ class AppTextStyles {
     color: AppColors.white,
   );
 
+    static const TextStyle heading7 = TextStyle(
+    fontSize: 16.0,
+    fontWeight: AppFontWeight.bold,
+    color: AppColors.white,
+    backgroundColor: AppColors.primary
+  );
+
   static const TextStyle subheading = TextStyle(
     fontSize: 16.0,
     fontWeight: AppFontWeight.regular,

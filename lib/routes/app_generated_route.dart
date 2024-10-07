@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamro_smart_life/view/main_screen.dart';
+import 'package:hamro_smart_life/view/screens/additional/multiplication_screen.dart';
 import 'package:hamro_smart_life/view/screens/compound_interest/compound_interest_screen.dart';
 import 'package:hamro_smart_life/view/screens/game/component/snake_game.dart';
 import 'package:hamro_smart_life/view/screens/game/component/word_matching_game.dart';
@@ -30,6 +31,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) => WordMatchingScreen());
       case "/snack_game_screen":
         return MaterialPageRoute(builder: (context) => SnakeGame());
+      case "/multipication_screen":
+        return MaterialPageRoute(builder: (context) => const MultiplicationTablePage());  
       case "/quiz_list":
         Map<String, dynamic> args =
             routeSettings.arguments as Map<String, dynamic>;

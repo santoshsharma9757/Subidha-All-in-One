@@ -4,6 +4,7 @@ import 'package:hamro_smart_life/constant/app_constant.dart';
 import 'package:hamro_smart_life/constant/app_screen_utils.dart';
 import 'package:hamro_smart_life/constant/app_text_style.dart';
 import 'package:hamro_smart_life/constant/app_urls.dart';
+import 'package:hamro_smart_life/utils/app_utils.dart';
 import 'package:hamro_smart_life/utils/widgets/reusable_appbar.dart';
 import 'package:hamro_smart_life/utils/widgets/reusable_container_widget.dart';
 import 'package:hamro_smart_life/view_model/main_screen_notifier.dart';
@@ -54,6 +55,7 @@ class _MainScreenState extends State<MainScreen> {
             ...mainScreenNotifier.services
                 .map((service) => servicesHamroSmartLife(service))
                 .toList(),
+                AppSpacing.verticalMedium
           ]),
         ));
   }
@@ -67,11 +69,9 @@ class _MainScreenState extends State<MainScreen> {
               : Stack(
                   children: [
                     CarouselSlider(
-                      // items: value.imageList
-                      //     .map((image) => _buildImageSlider(image))
-                      //     .toList(),
                       items: value.carouselBanner
-                          .map((banner) => _buildImageSlider(banner['image']))
+                          .map((banner) => _buildImageSlider(
+                              banner['image'], banner['title']))
                           .toList(),
                       carouselController: value.controller,
                       options: CarouselOptions(
@@ -99,7 +99,7 @@ class _MainScreenState extends State<MainScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
-                          value.imageList.length,
+                          value.carouselBanner.length,
                           (index) => Container(
                             width: AppScreenUtils.screenWidthPercentage(
                                 context, 0.025),
@@ -123,7 +123,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  Widget _buildImageSlider(String image) {
+  Widget _buildImageSlider(String image, String title) {
     return Stack(
       children: [
         Padding(
@@ -134,40 +134,38 @@ class _MainScreenState extends State<MainScreen> {
               AppUrls.baseUrl2 + image,
               width: AppScreenUtils.screenWidth(context),
               fit: BoxFit.cover,
-              // loadingBuilder: (context, child, loadingProgress) {
-              //   return const Center(child: CircularProgressIndicator());
-              // },
             ),
-            // Image.asset(
-            //   image,
-            //   fit: BoxFit.cover, // Adjust for desired fit
-            //   width: AppScreenUtils.screenWidth(context),
-            // ),
           ),
         ),
-        // const Positioned(
-        //   left: 0,
-        //   bottom: 10,
-        //   child: Padding(padding: EdgeInsets.all(13.0), child: Text("sss")),
-        // ),
+        Positioned(
+            left: 20,
+            bottom: 30,
+            child: Padding(
+                padding: const EdgeInsets.all(13.0),
+                child: Text(title, style: AppTextStyles.heading7))),
       ],
     );
   }
 
   Widget _buildAddional(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/quiz_screen');
-      },
-      child: ReusableContainer(
-          height: AppScreenUtils.screenHeightPercentage(context, 0.10),
-          width: AppScreenUtils.screenWidth(context),
-          color: AppColors.teal.withOpacity(0.5),
-          child: ListView.builder(
-              itemCount: mainScreenNotifier.additionalServices.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
+    return ReusableContainer(
+        height: AppScreenUtils.screenHeightPercentage(context, 0.12),
+        width: AppScreenUtils.screenWidth(context),
+        color: AppColors.teal.withOpacity(0.5),
+        child: ListView.builder(
+            itemCount: mainScreenNotifier.additionalServices.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  if (mainScreenNotifier.additionalServices[index] ==
+                      "table") {
+                    Navigator.pushNamed(context, '/multipication_screen');
+                  } else {
+                    AppUtils.snackBar("Coming soon!!!", context);
+                  }
+                },
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ReusableContainer(
                     height: 140,
@@ -178,6 +176,7 @@ class _MainScreenState extends State<MainScreen> {
                         children: [
                           Icon(
                             mainScreenNotifier.iconsServices[index],
+                            size: 30,
                           ),
                           Text(
                             mainScreenNotifier.additionalServices[index],
@@ -187,9 +186,9 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ),
                   ),
-                );
-              })),
-    );
+                ),
+              );
+            }));
   }
 
   Widget _buildQuizsection(BuildContext context) {
