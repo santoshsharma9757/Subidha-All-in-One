@@ -19,7 +19,6 @@ void main() async {
   await Hive.openBox('Todo_box');
   runApp(const HamroSmartLife());
 }
-
 class HamroSmartLife extends StatelessWidget {
   const HamroSmartLife({super.key});
 

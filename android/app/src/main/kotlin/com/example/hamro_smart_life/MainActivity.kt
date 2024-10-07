@@ -1,4 +1,4 @@
-package com.example.hamro_smart_life
+package com.appinventwithbibek.subidha_all_in_one
 
 import io.flutter.embedding.android.FlutterActivity
 
