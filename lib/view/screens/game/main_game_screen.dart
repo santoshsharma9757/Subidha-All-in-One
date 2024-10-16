@@ -34,7 +34,7 @@ class _GameMainScreenState extends State<GameMainScreen> {
       case "word_game":
         return Navigator.pushNamed(context, "/word_match_game_screen");
       case "snake_game":
-        return AppUtils.snackBar("Coming soon", context);
+        return AppUtils.showMyDialog("Coming soon !!!", "Attention",context);
       // return Navigator.pushNamed(context, "/snack_game_screen");
     }
   }

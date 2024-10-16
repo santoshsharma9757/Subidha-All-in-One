@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hamro_smart_life/constant/app_constant.dart';
 import 'package:hamro_smart_life/constant/app_screen_utils.dart';
@@ -65,19 +66,29 @@ class _QuizScreenState extends State<QuizScreen> {
 
   _buildCard(QuizNotifier value, int index) {
     return ReusableContainer(
-      padding: const EdgeInsets.all(5.0),
-      color: AppColors.purple.withOpacity(0.5),
+      color: AppColors.purple,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.network(
-            AppUrls.baseUrl2 + value.quizCategory[index]['image'],
-            width: AppScreenUtils.screenWidth(context),
+          SizedBox(
             height: AppScreenUtils.screenHeightPercentage(context, 0.13),
-            fit: BoxFit.cover,
-            //  loadingBuilder: (context, child, loadingProgress) {
-            //     return const Center(child: CircularProgressIndicator());
-            //   },
+            child: CachedNetworkImage(
+              imageUrl: AppUrls.baseUrl2 + value.quizCategory[index]['image'],
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(strokeWidth: 2)),
+              errorWidget: (context, url, error) => const Center(
+                child: Text("Loading..."),
+              ),
+              fit: BoxFit.cover,
+            ),
           ),
           AppSpacing.verticalMedium,
           FittedBox(

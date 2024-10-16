@@ -11,7 +11,7 @@ class QuizRepo {
       final response = await _networkService
           .get(AppUrls.quizCategories)
           .catchError((error, stackTrace) {
-        AppUtils.showMyDialog(error.toString(), context);
+        AppUtils.showMyDialog(error.toString(), "Error",context);
         if (kDebugMode) {
           print(error.toString());
         }
@@ -31,7 +31,7 @@ class QuizRepo {
       final response = await _networkService
           .get("${AppUrls.quizCategories}$quizCategoryId/quizzes")
           .catchError((error, stackTrace) {
-        AppUtils.showMyDialog(error.toString(), context);
+        AppUtils.showMyDialog(error.toString(),"Error", context);
         if (kDebugMode) {
           print(error.toString());
         }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hamro_smart_life/constant/app_constant.dart';
@@ -55,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
             ...mainScreenNotifier.services
                 .map((service) => servicesHamroSmartLife(service))
                 .toList(),
-                AppSpacing.verticalMedium
+            AppSpacing.verticalMedium
           ]),
         ));
   }
@@ -130,19 +131,39 @@ class _MainScreenState extends State<MainScreen> {
           padding: const EdgeInsets.all(8.0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10.0), // Adjust as needed
-            child: Image.network(
-              AppUrls.baseUrl2 + image,
-              width: AppScreenUtils.screenWidth(context),
+            child: CachedNetworkImage(
+              imageUrl: AppUrls.baseUrl2 + image,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(strokeWidth: 2)),
+              errorWidget: (context, url, error) => const Center(
+                child: Text("Loading..."),
+              ),
               fit: BoxFit.cover,
             ),
           ),
         ),
-        Positioned(
-            left: 20,
-            bottom: 30,
-            child: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Text(title, style: AppTextStyles.heading7))),
+
+        // Image.network(
+        //   AppUrls.baseUrl2 + image,
+        //   width: AppScreenUtils.screenWidth(context),
+        //   fit: BoxFit.cover,
+        // ),
+        //   ),
+        // ),
+        // Positioned(
+        //     left: 20,
+        //     bottom: 30,
+        //     child: Padding(
+        //         padding: const EdgeInsets.all(13.0),
+        //         child: Text(title, style: AppTextStyles.heading7))),
       ],
     );
   }
@@ -158,11 +179,10 @@ class _MainScreenState extends State<MainScreen> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  if (mainScreenNotifier.additionalServices[index] ==
-                      "table") {
+                  if (mainScreenNotifier.additionalServices[index] == "table") {
                     Navigator.pushNamed(context, '/multipication_screen');
                   } else {
-                    AppUtils.snackBar("Coming soon!!!", context);
+                    AppUtils.showMyDialog("Coming soon !!!", "Attention",context);
                   }
                 },
                 child: Padding(
@@ -229,7 +249,7 @@ class _MainScreenState extends State<MainScreen> {
             const Spacer(flex: 7),
             Padding(
               padding: const EdgeInsets.only(top: AppPadding.large),
-              child: Image.asset("assets/mainscreen/award_cup.png",
+              child: Image.asset("assets/mainscreen/quiz.png",
                   width: 70, height: 70, fit: BoxFit.cover),
             ),
             const Spacer(flex: 1),

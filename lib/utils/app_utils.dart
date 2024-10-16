@@ -8,13 +8,14 @@ class AppUtils {
 
   static showMyDialog(
     String message,
+    String title,
     BuildContext context,
   ) {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Error"),
+          title:  Text(title),
           content: SingleChildScrollView(
             child: ListBody(
               children: [

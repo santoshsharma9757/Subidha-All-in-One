@@ -11,7 +11,7 @@ class MainScreenRepo {
       final response = await _networkService
           .get(AppUrls.carouselBanner)
           .catchError((error, stackTrace) {
-        AppUtils.showMyDialog(error.toString(), context);
+        AppUtils.showMyDialog(error.toString(), "Error", context);
         if (kDebugMode) {
           print(error.toString());
         }
