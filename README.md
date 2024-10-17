@@ -4,13 +4,15 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Key store:
 
-A few resources to get you started if this is your first Flutter project:
+storePassword=19982004
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+keyPassword=19982004
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+keyAlias=subidhaapp
+
+storeFile=subidhaapp-keystore.jks
+
+
+[jksfile.zip](https://github.com/user-attachments/files/17411570/jksfile.zip)
