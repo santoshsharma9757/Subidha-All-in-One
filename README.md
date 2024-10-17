@@ -7,8 +7,11 @@ A new Flutter project.
 Key store:
 
 storePassword=19982004
+
 keyPassword=19982004
+
 keyAlias=subidhaapp
+
 storeFile=subidhaapp-keystore.jks
 
 
